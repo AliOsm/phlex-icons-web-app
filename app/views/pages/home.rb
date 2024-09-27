@@ -19,7 +19,9 @@ class Views::Pages::Home < Views::Base
       div(id: "icon-sheet")
 
       header
+      flush
       available_icon_packs
+      flush
       discover_all_icon_packs
     end
   end
@@ -118,9 +120,12 @@ class Views::Pages::Home < Views::Base
         )
       end
 
+      flush
+
       div(class: "space-y-8") do
         ICON_PACKS.each do |pack, _|
           icon_pack_block(pack)
+          flush
         end
       end
     end
