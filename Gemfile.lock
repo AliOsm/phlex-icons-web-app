@@ -183,7 +183,7 @@ GEM
       ast (~> 2.4.1)
       racc
     phlex (2.0.0.beta2)
-    propshaft (1.0.0)
+    propshaft (1.1.0)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
       rack
