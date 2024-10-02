@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: https://github.com/phlex-ruby/phlex-rails.git
-  revision: 901cd037f28b84f85c9557ba227fd76573c2a160
+  revision: 7dee942f48240e4788ead5301fae713f99cb102b
   specs:
     phlex-rails (2.0.0.beta2)
       phlex (= 2.0.0.beta2)
