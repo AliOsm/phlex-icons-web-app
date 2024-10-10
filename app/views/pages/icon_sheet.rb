@@ -5,7 +5,7 @@ class Views::Pages::IconSheet < Views::Base
     RBUI::Sheet() do
       RBUI::SheetTrigger(data: { controller: "click" }) { }
 
-      RBUI::SheetContent(class: "w-[300px]") do
+      RBUI::SheetContent(class: "w-[300px] overflow-scroll") do
         RBUI::SheetHeader(class: "text-left") do
           RBUI::SheetTitle() { params[:icon] }
           RBUI::SheetDescription(class: "gap-y-2") do
@@ -62,6 +62,7 @@ class Views::Pages::IconSheet < Views::Base
 
       with_phlex_kit_block
       without_phlex_kit_block
+      svg_block
     end
   end
 
@@ -91,6 +92,7 @@ class Views::Pages::IconSheet < Views::Base
 
           with_phlex_kit_block(variant: variant)
           without_phlex_kit_block(variant: variant)
+          svg_block(variant: variant)
         end
       rescue NotImplementedError
         RBUI::TypographyMuted() { "Variant not implemented" }
@@ -143,6 +145,22 @@ class Views::Pages::IconSheet < Views::Base
           RBUI::Codeblock("render #{params[:pack]}::#{params[:icon]}.new(variant: :#{variant})", syntax: :ruby)
         else
           RBUI::Codeblock("render #{params[:pack]}::#{params[:icon]}.new", syntax: :ruby)
+        end
+      end
+    end
+  end
+
+  def svg_block(variant: nil)
+    div do
+      RBUI::TypographySmall() { t("pages.icon_sheet.plain_svg") }
+      whitespace
+      RBUI::TypographySmall() { "↓" }
+
+      div(class: "w-full mt-1") do
+        if variant
+          RBUI::Codeblock(Nokogiri::XML(capture { render params[:pack].constantize.const_get(params[:icon]).new(variant:, class: "") }).to_xhtml, syntax: :html)
+        else
+          RBUI::Codeblock(Nokogiri::XML(capture { render params[:pack].constantize.const_get(params[:icon]).new(class: "") }).to_xhtml, syntax: :html)
         end
       end
     end

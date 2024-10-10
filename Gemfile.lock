@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: https://github.com/phlex-ruby/phlex-rails.git
-  revision: 901cd037f28b84f85c9557ba227fd76573c2a160
+  revision: 7dee942f48240e4788ead5301fae713f99cb102b
   specs:
     phlex-rails (2.0.0.beta2)
       phlex (= 2.0.0.beta2)
@@ -155,7 +155,7 @@ GEM
     matrix (0.4.2)
     mini_mime (1.1.5)
     minitest (5.25.1)
-    msgpack (1.7.2)
+    msgpack (1.7.3)
     net-imap (0.4.16)
       date
       net-protocol
@@ -183,7 +183,7 @@ GEM
       ast (~> 2.4.1)
       racc
     phlex (2.0.0.beta2)
-    propshaft (1.0.0)
+    propshaft (1.1.0)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
       rack
@@ -238,7 +238,7 @@ GEM
     regexp_parser (2.9.2)
     reline (0.5.10)
       io-console (~> 0.5)
-    rexml (3.3.7)
+    rexml (3.3.8)
     rouge (4.2.1)
     rubocop (1.66.1)
       json (~> 2.3)
@@ -290,7 +290,7 @@ GEM
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
     stringio (3.1.1)
-    tailwind_merge (0.13.0)
+    tailwind_merge (0.13.1)
       lru_redux (~> 1.1)
     thor (1.3.2)
     timeout (0.4.1)
