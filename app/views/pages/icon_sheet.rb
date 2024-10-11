@@ -62,7 +62,8 @@ class Views::Pages::IconSheet < Views::Base
 
       with_phlex_kit_block
       without_phlex_kit_block
-      svg_block
+      plain_phlex_block
+      plain_svg_block
     end
   end
 
@@ -90,9 +91,10 @@ class Views::Pages::IconSheet < Views::Base
             icon(variant:)
           end
 
-          with_phlex_kit_block(variant: variant)
-          without_phlex_kit_block(variant: variant)
-          svg_block(variant: variant)
+          with_phlex_kit_block(variant:)
+          without_phlex_kit_block(variant:)
+          plain_phlex_block(variant:)
+          plain_svg_block(variant:)
         end
       rescue NotImplementedError
         RBUI::TypographyMuted() { "Variant not implemented" }
@@ -150,7 +152,30 @@ class Views::Pages::IconSheet < Views::Base
     end
   end
 
-  def svg_block(variant: nil)
+  def plain_phlex_block(variant: nil)
+    div do
+      RBUI::TypographySmall() { t("pages.icon_sheet.plain_phlex") }
+      whitespace
+      RBUI::TypographySmall() { "↓" }
+
+      div(class: "w-full mt-1") do
+        if variant
+          source = params[:pack].constantize.const_get(params[:icon]).new.method(variant).source
+          source = source.sub(variant.to_s, "view_template")
+          source = source.gsub(/^\s{8}/, "")
+
+          RBUI::Codeblock(source, syntax: :ruby)
+        else
+          source = params[:pack].constantize.const_get(params[:icon]).new.method(:view_template).source
+          source = source.gsub(/^\s{8}/, "")
+
+          RBUI::Codeblock(source, syntax: :ruby)
+        end
+      end
+    end
+  end
+
+  def plain_svg_block(variant: nil)
     div do
       RBUI::TypographySmall() { t("pages.icon_sheet.plain_svg") }
       whitespace

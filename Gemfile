@@ -1,5 +1,6 @@
 source "https://rubygems.org"
 
+gem "method_source", "~> 1.1"
 gem "phlex-icons", github: "AliOsm/phlex-icons"
 gem "phlex-rails", github: "phlex-ruby/phlex-rails"
 gem "rbui", github: "AliOsm/rbui"
