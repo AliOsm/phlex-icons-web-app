@@ -7,7 +7,7 @@
       "check_name": "UnsafeReflection",
       "message": "Unsafe reflection method `constantize` called on parameter value",
       "file": "app/views/pages/icon_sheet.rb",
-      "line": 103,
+      "line": 107,
       "link": "https://brakemanscanner.org/docs/warning_types/remote_code_execution/",
       "code": "params[:pack].constantize",
       "render_path": null,
@@ -30,7 +30,7 @@
       "check_name": "UnsafeReflection",
       "message": "Unsafe reflection method `constantize` called on parameter value",
       "file": "app/views/pages/icon_sheet.rb",
-      "line": 105,
+      "line": 109,
       "link": "https://brakemanscanner.org/docs/warning_types/remote_code_execution/",
       "code": "params[:pack].constantize",
       "render_path": null,
@@ -45,8 +45,100 @@
         470
       ],
       "note": ""
+    },
+    {
+      "warning_type": "Remote Code Execution",
+      "warning_code": 24,
+      "fingerprint": "88ff9cb24fc9882e2d94920893866a7bebcac5a8b882a03359d89b5faff06ad3",
+      "check_name": "UnsafeReflection",
+      "message": "Unsafe reflection method `constantize` called on parameter value",
+      "file": "app/views/pages/icon_sheet.rb",
+      "line": 163,
+      "link": "https://brakemanscanner.org/docs/warning_types/remote_code_execution/",
+      "code": "params[:pack].constantize",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Views::Pages::IconSheet",
+        "method": "plain_phlex_block"
+      },
+      "user_input": "params[:pack]",
+      "confidence": "High",
+      "cwe_id": [
+        470
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Remote Code Execution",
+      "warning_code": 24,
+      "fingerprint": "88ff9cb24fc9882e2d94920893866a7bebcac5a8b882a03359d89b5faff06ad3",
+      "check_name": "UnsafeReflection",
+      "message": "Unsafe reflection method `constantize` called on parameter value",
+      "file": "app/views/pages/icon_sheet.rb",
+      "line": 169,
+      "link": "https://brakemanscanner.org/docs/warning_types/remote_code_execution/",
+      "code": "params[:pack].constantize",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Views::Pages::IconSheet",
+        "method": "plain_phlex_block"
+      },
+      "user_input": "params[:pack]",
+      "confidence": "High",
+      "cwe_id": [
+        470
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Remote Code Execution",
+      "warning_code": 24,
+      "fingerprint": "92016c427ed6b918375f190302bec5bc9906d99152019c5b8c9261ef5e59bde3",
+      "check_name": "UnsafeReflection",
+      "message": "Unsafe reflection method `constantize` called on parameter value",
+      "file": "app/views/pages/icon_sheet.rb",
+      "line": 186,
+      "link": "https://brakemanscanner.org/docs/warning_types/remote_code_execution/",
+      "code": "params[:pack].constantize",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Views::Pages::IconSheet",
+        "method": "plain_svg_block"
+      },
+      "user_input": "params[:pack]",
+      "confidence": "High",
+      "cwe_id": [
+        470
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Remote Code Execution",
+      "warning_code": 24,
+      "fingerprint": "92016c427ed6b918375f190302bec5bc9906d99152019c5b8c9261ef5e59bde3",
+      "check_name": "UnsafeReflection",
+      "message": "Unsafe reflection method `constantize` called on parameter value",
+      "file": "app/views/pages/icon_sheet.rb",
+      "line": 188,
+      "link": "https://brakemanscanner.org/docs/warning_types/remote_code_execution/",
+      "code": "params[:pack].constantize",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Views::Pages::IconSheet",
+        "method": "plain_svg_block"
+      },
+      "user_input": "params[:pack]",
+      "confidence": "High",
+      "cwe_id": [
+        470
+      ],
+      "note": ""
     }
   ],
-  "updated": "2024-09-27 15:41:11 +0000",
+  "updated": "2024-10-11 16:22:04 +0000",
   "brakeman_version": "6.2.1"
 }
