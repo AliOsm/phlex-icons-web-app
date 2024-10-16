@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/AliOsm/rbui.git
-  revision: d2d387241523da1fccd5672a446d298a4c74552a
+  revision: 20e3394336fbb8e0b1c151f3cda3e03f2580b1da
   specs:
     rbui (1.0.0.pre.alpha.3)
       phlex (>= 1.10)
