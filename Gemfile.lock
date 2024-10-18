@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/AliOsm/rbui.git
-  revision: d2d387241523da1fccd5672a446d298a4c74552a
+  revision: 774b3c8ce6233a7fa9e56d37531a47f4f8b0515a
   specs:
     rbui (1.0.0.pre.alpha.3)
       phlex (>= 1.10)
@@ -291,7 +291,7 @@ GEM
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
     stringio (3.1.1)
-    tailwind_merge (0.13.1)
+    tailwind_merge (0.13.2)
       lru_redux (~> 1.1)
     thor (1.3.2)
     timeout (0.4.1)
