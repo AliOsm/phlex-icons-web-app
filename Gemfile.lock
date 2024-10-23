@@ -16,11 +16,11 @@ GIT
 
 GIT
   remote: https://github.com/phlex-ruby/phlex-rails.git
-  revision: 7dee942f48240e4788ead5301fae713f99cb102b
+  revision: 80388e7c1a5ba53f11e8de45eeb250bb99bc9060
   specs:
     phlex-rails (2.0.0.beta2)
       phlex (= 2.0.0.beta2)
-      railties (>= 6.1, < 8)
+      railties (>= 6.1, < 9)
 
 GEM
   remote: https://rubygems.org/
@@ -195,7 +195,7 @@ GEM
     puma (6.4.3)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (3.1.7)
+    rack (3.1.8)
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rack-test (2.1.0)
@@ -314,7 +314,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.18)
+    zeitwerk (2.7.1)
 
 PLATFORMS
   aarch64-linux
