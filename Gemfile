@@ -1,12 +1,12 @@
 source "https://rubygems.org"
 
 gem "method_source", "~> 1.1"
-gem "phlex-icons", github: "AliOsm/phlex-icons"
+gem "phlex-icons"
 gem "phlex-rails", github: "phlex-ruby/phlex-rails"
-gem "rbui", github: "AliOsm/rbui"
+gem "ruby_ui", github: "AliOsm/rbui"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.2.1"
+gem "rails", "~> 7.2", ">= 7.2.1.2"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use sqlite3 as the database for Active Record

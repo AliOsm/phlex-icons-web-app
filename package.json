@@ -13,7 +13,7 @@
     "@hotwired/turbo-rails": "^8.0.10",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
-    "rbui-js": "https://github.com/rbui-labs/rbui",
+    "ruby-ui": "https://github.com/AliOsm/rbui",
     "tailwindcss": "^3.4.13",
     "tailwindcss-animate": "^1.0.7"
   }

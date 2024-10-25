@@ -877,19 +877,6 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
-"rbui-js@https://github.com/rbui-labs/rbui":
-  version "1.0.0-alpha.3"
-  resolved "https://github.com/rbui-labs/rbui#2d7f30ea48ef2503510714c306386d6e9e9754d2"
-  dependencies:
-    "@floating-ui/dom" "^1.6.8"
-    "@hotwired/stimulus" "^3.2.2"
-    chart.js "^4.4.1"
-    date-fns "^2.30.0"
-    fuse.js "^7.0.0"
-    motion "^10.16.4"
-    mustache "^4.2.0"
-    tippy.js "^6.3.7"
-
 read-cache@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/read-cache/-/read-cache-1.0.0.tgz#e664ef31161166c9751cdbe8dbcf86b5fb58f774"
@@ -922,6 +909,19 @@ reusify@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/reusify/-/reusify-1.0.4.tgz#90da382b1e126efc02146e90845a88db12925d76"
   integrity sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==
+
+"ruby-ui@https://github.com/AliOsm/rbui":
+  version "1.0.0-alpha.4"
+  resolved "https://github.com/AliOsm/rbui#f72ce9d8edb9a49594bde5a0c1ee06e1eb486da6"
+  dependencies:
+    "@floating-ui/dom" "^1.6.8"
+    "@hotwired/stimulus" "^3.2.2"
+    chart.js "^4.4.1"
+    date-fns "^2.30.0"
+    fuse.js "^7.0.0"
+    motion "^10.16.4"
+    mustache "^4.2.0"
+    tippy.js "^6.3.7"
 
 run-parallel@^1.1.9:
   version "1.2.0"

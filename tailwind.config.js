@@ -1,9 +1,9 @@
-// For importing tailwind styles from rbui gem
+// For importing tailwind styles from RubyUI gem
 const execSync = require('child_process').execSync;
 
-// Import rbui gem path (To make sure Tailwind loads classes used by rbui gem)
-const outputRBUI = execSync('bundle show rbui', { encoding: 'utf-8' });
-const rbui_path = outputRBUI.trim() + '/**/*.rb';
+// Import RubyUI gem path (To make sure Tailwind loads classes used by RubyUI gem)
+const outputRubyUI = execSync('bundle show ruby_ui', { encoding: 'utf-8' });
+const rubyUIPath = outputRubyUI.trim() + '/**/*.rb';
 
 const defaultTheme = require('tailwindcss/defaultTheme')
 
@@ -15,7 +15,7 @@ module.exports = {
     './app/helpers/**/*.rb',
     './app/assets/stylesheets/**/*.css',
     './app/javascript/**/*.js',
-    rbui_path
+    rubyUIPath
   ],
   theme: {
     container: {

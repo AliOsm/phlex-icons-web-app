@@ -2,4 +2,4 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 
-import "../components/rbui"
+import "../components/ruby-ui"
