@@ -7,8 +7,14 @@ import { application } from "./application"
 import ClickController from "./click_controller"
 application.register("click", ClickController)
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+import RubyUi__ClipboardController from "./ruby_ui/clipboard_controller"
+application.register("ruby-ui--clipboard", RubyUi__ClipboardController)
+
+import RubyUi__SheetContentController from "./ruby_ui/sheet_content_controller"
+application.register("ruby-ui--sheet-content", RubyUi__SheetContentController)
+
+import RubyUi__SheetController from "./ruby_ui/sheet_controller"
+application.register("ruby-ui--sheet", RubyUi__SheetController)
 
 import SearchController from "./search_controller"
 application.register("search", SearchController)

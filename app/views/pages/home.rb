@@ -42,13 +42,13 @@ class Views::Pages::Home < Views::Base
   end
 
   def header_card
-    RBUI::Card(class: "absolute top-1/2 left-0 sm:left-1/2 transform sm:-translate-x-1/2 -translate-y-1/2 rounded-none sm:rounded-xl p-8 pt-0") do
+    Card(class: "absolute top-1/2 left-0 sm:left-1/2 transform sm:-translate-x-1/2 -translate-y-1/2 rounded-none sm:rounded-xl p-8 pt-0") do
       div(class: "flex flex-col justify-center text-center w-full") do
         img(src: "/phlex-icons.png")
 
-        RBUI::TypographyH1(class: "mb-4") { t("pages.home.title") }
+        Heading(level: 1, class: "mb-4") { t("pages.home.title") }
 
-        RBUI::Link(href: "https://github.com/AliOsm/phlex-icons", variant: :outline, class: "gap-2", target: :_blank) do
+        Link(href: "https://github.com/AliOsm/phlex-icons", variant: :outline, class: "gap-2", target: :_blank) do
           Bootstrap::Github(class: "size-4")
           plain t("pages.home.view_on_github")
         end
@@ -67,12 +67,12 @@ class Views::Pages::Home < Views::Base
 
   def available_icon_packs
     div(class: "container max-w-6xl py-24 lg:py-32") do
-      RBUI::TypographyH2(class: "border-none") { t("pages.home.available_icon_packs") }
+      Heading(level: 2) { t("pages.home.available_icon_packs") }
 
       div(class: "grid grid-cols-2 sm:grid-cols-4 gap-4") do
         icon_pack_card(
-          name: Phlex::Icons.to_s,
-          version: Phlex::Icons::VERSION,
+          name: PhlexIcons.to_s,
+          version: PhlexIcons::VERSION,
           count: ICON_PACKS.sum { |pack, _| pack.constants.count },
           link: "https://github.com/AliOsm/phlex-icons"
         )
@@ -85,20 +85,20 @@ class Views::Pages::Home < Views::Base
   end
 
   def icon_pack_card(name:, version:, count:, link:)
-    RBUI::Card(class: "rounded-lg") do
-      RBUI::CardHeader(class: "flex flex-row items-top justify-between space-y-0 pb-2") do
-        RBUI::CardTitle(class: "text-md font-medium") do
+    Card(class: "rounded-lg") do
+      CardHeader(class: "flex flex-row items-top justify-between space-y-0 pb-2") do
+        CardTitle(class: "text-md font-medium") do
           plain name
           whitespace
-          RBUI::TypographyMuted() { "v#{version}" }
+          Text(size: "2", class: "text-muted-foreground") { "v#{version}" }
         end
 
-        RBUI::Link(href: link, variant: :outline, icon: true, class: "size-7", target: :_blank) do
+        Link(href: link, variant: :outline, icon: true, class: "size-7", target: :_blank) do
           Lucide::ExternalLink(class: "size-4")
         end
       end
 
-      RBUI::CardContent(class: "pb-5") do
+      CardContent(class: "pb-5") do
         div(class: "text-2xl font-bold") { number_with_delimiter(count) }
       end
     end
@@ -107,9 +107,9 @@ class Views::Pages::Home < Views::Base
   def discover_all_icon_packs
     div(class: "container max-w-6xl pt-0 lg:pt-0 py-24 lg:py-32") do
       div(class: "mb-8") do
-        RBUI::TypographyH1(class: "text-center mb-2") { t("pages.home.discover_all_icon_packs") }
+        Heading(level: 1, class: "text-center mb-2") { t("pages.home.discover_all_icon_packs") }
 
-        RBUI::Input(
+        Input(
           type: "search",
           class: "w-full",
           placeholder: t("pages.home.search_available_icons"),
@@ -139,19 +139,19 @@ class Views::Pages::Home < Views::Base
   end
 
   def icon_pack_block_header(pack)
-    RBUI::TypographyH2(class: "pb-2 mb-4") do
+    Heading(level: 2, class: "pb-2 mb-4") do
       plain pack.name.split("::").last
 
-      RBUI::TypographyMuted() { number_with_delimiter(pack.constants.count) }
+      Text(size: "2", class: "text-muted-foreground") { number_with_delimiter(pack.constants.count) }
 
       div(class: "flex flex-row items-center space-x-2") do
         unless pack::VARIANTS.nil?
           whitespace
-          RBUI::TypographyMuted() { "#{t("pages.home.variants")}:" }
+          Text(size: "2", class: "text-muted-foreground") { "#{t("pages.home.variants")}:" }
           whitespace
 
           pack::VARIANTS.each do |variant|
-            RBUI::TypographyInlineCode() do
+            InlineCode() do
               plain ":"
               plain variant.to_s
             end

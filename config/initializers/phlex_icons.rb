@@ -1,2 +1,2 @@
-Phlex::Icons::Flag.configuration.default_variant = :square
-Phlex::Icons::Hero.configuration.default_variant = :outline
+PhlexIcons::Flag.configuration.default_variant = :square
+PhlexIcons::Hero.configuration.default_variant = :outline

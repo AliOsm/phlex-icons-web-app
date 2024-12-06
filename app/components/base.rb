@@ -11,7 +11,10 @@ class Components::Base < Phlex::HTML
   include Phlex::Rails::Helpers::Routes
   include Phlex::Rails::Helpers::StylesheetLinkTag
   include Phlex::Rails::Helpers::T
-  include Phlex::Icons
+
+  include Components
+  include RubyUI
+  include PhlexIcons
 
   register_value_helper :params
 

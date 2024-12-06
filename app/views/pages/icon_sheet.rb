@@ -2,17 +2,17 @@
 
 class Views::Pages::IconSheet < Views::Base
   def view_template
-    RBUI::Sheet() do
-      RBUI::SheetTrigger(data: { controller: "click" }) { }
+    Sheet() do
+      SheetTrigger(data: { controller: "click" }) { }
 
-      RBUI::SheetContent(class: "w-[300px] overflow-scroll") do
-        RBUI::SheetHeader(class: "text-left") do
-          RBUI::SheetTitle() { params[:icon] }
-          RBUI::SheetDescription(class: "gap-y-2") do
+      SheetContent(class: "w-[300px] overflow-scroll") do
+        SheetHeader(class: "text-left") do
+          SheetTitle() { params[:icon] }
+          SheetDescription(class: "gap-y-2") do
             plain params[:pack]
           end
 
-          RBUI::Link(
+          Link(
             href: icon_source_code_url,
             variant: :outline,
             size: :sm,
@@ -25,12 +25,12 @@ class Views::Pages::IconSheet < Views::Base
           end
         end
 
-        RBUI::SheetMiddle(class: "space-y-4") do
+        SheetMiddle(class: "space-y-4") do
           sheet_body
         end
 
-        RBUI::SheetFooter() do
-          RBUI::Button(variant: :outline, data: { action: "click->rbui--sheet-content#close" }) { t("pages.icon_sheet.close") }
+        SheetFooter() do
+          Button(variant: :outline, data: { action: "click->rbui--sheet-content#close" }) { t("pages.icon_sheet.close") }
         end
       end
     end
@@ -53,9 +53,11 @@ class Views::Pages::IconSheet < Views::Base
   def no_variants_icon
     div(class: "space-y-2") do
       div do
-        RBUI::TypographySmall() { t("pages.icon_sheet.icon") }
-        whitespace
-        RBUI::TypographySmall() { "↓" }
+        Text(size: "sm") do
+          plain t("pages.icon_sheet.icon")
+          whitespace
+          plain "↓"
+        end
 
         icon
       end
@@ -72,21 +74,23 @@ class Views::Pages::IconSheet < Views::Base
       begin
         div(class: "space-y-2") do
           div do
-            RBUI::TypographySmall() do
+            Text(size: "sm") do
               plain t("pages.icon_sheet.icon")
               whitespace
               plain "("
               plain t("pages.icon_sheet.variant")
               plain ":"
+              whitespace
+
+              InlineCode() do
+                plain ":"
+                plain variant.to_s
+              end
+
+              plain ")"
+              whitespace
+              plain "↓"
             end
-            whitespace
-            RBUI::TypographyInlineCode() do
-              plain ":"
-              plain variant.to_s
-            end
-            plain ")"
-            whitespace
-            RBUI::TypographySmall() { "↓" }
 
             icon(variant:)
           end
@@ -97,7 +101,7 @@ class Views::Pages::IconSheet < Views::Base
           plain_svg_block(variant:)
         end
       rescue NotImplementedError
-        RBUI::TypographyMuted() { "Variant not implemented" }
+        TypographyMuted() { "Variant not implemented" }
       end
     end
   end
@@ -112,17 +116,19 @@ class Views::Pages::IconSheet < Views::Base
 
   def with_phlex_kit_block(variant: nil)
     div do
-      RBUI::TypographySmall() { t("pages.icon_sheet.with") }
-      whitespace
-      RBUI::TypographyInlineCode() { t("pages.icon_sheet.phlex_kit") }
-      whitespace
-      RBUI::TypographySmall() { "↓" }
+      Text(size: "sm") do
+        plain t("pages.icon_sheet.with")
+        whitespace
+        InlineCode() { t("pages.icon_sheet.phlex_kit") }
+        whitespace
+        plain "↓"
+      end
 
       div(class: "w-full mt-1") do
         if variant
-          RBUI::Codeblock("#{params[:pack].split("::").last}::#{params[:icon]}(variant: :#{variant})", syntax: :ruby)
+          Codeblock("#{params[:pack].split("::").last}::#{params[:icon]}(variant: :#{variant})", syntax: :ruby)
         else
-          RBUI::Codeblock("#{params[:pack].split("::").last}::#{params[:icon]}()", syntax: :ruby)
+          Codeblock("#{params[:pack].split("::").last}::#{params[:icon]}()", syntax: :ruby)
         end
       end
     end
@@ -130,23 +136,23 @@ class Views::Pages::IconSheet < Views::Base
 
   def without_phlex_kit_block(variant: nil)
     div do
-      RBUI::TypographySmall() { t("pages.icon_sheet.without") }
-      whitespace
-      RBUI::TypographyInlineCode() { t("pages.icon_sheet.phlex_kit") }
-      whitespace
-      RBUI::TypographySmall() do
+      Text(size: "sm") do
+        plain t("pages.icon_sheet.without")
+        whitespace
+        InlineCode() { t("pages.icon_sheet.phlex_kit") }
+        whitespace
         plain "("
         plain t("pages.icon_sheet.eg_erb")
         plain ")"
+        whitespace
+        plain "↓"
       end
-      whitespace
-      RBUI::TypographySmall() { "↓" }
 
       div(class: "w-full mt-1") do
         if variant
-          RBUI::Codeblock("render #{params[:pack]}::#{params[:icon]}.new(variant: :#{variant})", syntax: :ruby)
+          Codeblock("render #{params[:pack]}::#{params[:icon]}.new(variant: :#{variant})", syntax: :ruby)
         else
-          RBUI::Codeblock("render #{params[:pack]}::#{params[:icon]}.new", syntax: :ruby)
+          Codeblock("render #{params[:pack]}::#{params[:icon]}.new", syntax: :ruby)
         end
       end
     end
@@ -154,22 +160,24 @@ class Views::Pages::IconSheet < Views::Base
 
   def plain_phlex_block(variant: nil)
     div do
-      RBUI::TypographySmall() { t("pages.icon_sheet.plain_phlex") }
-      whitespace
-      RBUI::TypographySmall() { "↓" }
+      Text(size: "sm") do
+        plain t("pages.icon_sheet.plain_phlex")
+        whitespace
+        plain "↓"
+      end
 
       div(class: "w-full mt-1") do
         if variant
           source = params[:pack].constantize.const_get(params[:icon]).new.method(variant).source
           source = source.sub(variant.to_s, "view_template")
-          source = source.gsub(/^\s{8}/, "")
+          source = source.gsub(/^\s{6}/, "")
 
-          RBUI::Codeblock(source, syntax: :ruby)
+          Codeblock(source, syntax: :ruby)
         else
           source = params[:pack].constantize.const_get(params[:icon]).new.method(:view_template).source
-          source = source.gsub(/^\s{8}/, "")
+          source = source.gsub(/^\s{6}/, "")
 
-          RBUI::Codeblock(source, syntax: :ruby)
+          Codeblock(source, syntax: :ruby)
         end
       end
     end
@@ -177,15 +185,17 @@ class Views::Pages::IconSheet < Views::Base
 
   def plain_svg_block(variant: nil)
     div do
-      RBUI::TypographySmall() { t("pages.icon_sheet.plain_svg") }
-      whitespace
-      RBUI::TypographySmall() { "↓" }
+      Text(size: "sm") do
+        plain t("pages.icon_sheet.plain_svg")
+        whitespace
+        plain "↓"
+      end
 
       div(class: "w-full mt-1") do
         if variant
-          RBUI::Codeblock(Nokogiri::XML(capture { render params[:pack].constantize.const_get(params[:icon]).new(variant:, class: "") }).to_xhtml, syntax: :html)
+          Codeblock(Nokogiri::XML(capture { render params[:pack].constantize.const_get(params[:icon]).new(variant:, class: "") }).to_xhtml, syntax: :html)
         else
-          RBUI::Codeblock(Nokogiri::XML(capture { render params[:pack].constantize.const_get(params[:icon]).new(class: "") }).to_xhtml, syntax: :html)
+          Codeblock(Nokogiri::XML(capture { render params[:pack].constantize.const_get(params[:icon]).new(class: "") }).to_xhtml, syntax: :html)
         end
       end
     end

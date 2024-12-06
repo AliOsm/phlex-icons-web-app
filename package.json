@@ -9,12 +9,12 @@
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
   },
   "dependencies": {
+    "@floating-ui/dom": "^1.6.12",
     "@hotwired/stimulus": "^3.2.2",
-    "@hotwired/turbo-rails": "^8.0.10",
+    "@hotwired/turbo-rails": "^8.0.12",
     "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.47",
-    "ruby-ui": "https://github.com/AliOsm/rbui",
-    "tailwindcss": "^3.4.13",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.16",
     "tailwindcss-animate": "^1.0.7"
   }
 }
