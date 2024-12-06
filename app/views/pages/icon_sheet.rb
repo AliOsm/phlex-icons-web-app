@@ -39,7 +39,7 @@ class Views::Pages::IconSheet < Views::Base
   private
 
   def icon_source_code_url
-    "https://github.com/AliOsm/phlex-icons/blob/main/lib/phlex/icons/#{params[:pack].split('::').last.downcase}/#{params[:icon].underscore}.rb"
+    "https://github.com/AliOsm/phlex-icons/blob/main/lib/phlex-icons/#{params[:pack].split('::').last.downcase}/#{params[:icon].underscore}.rb"
   end
 
   def sheet_body
