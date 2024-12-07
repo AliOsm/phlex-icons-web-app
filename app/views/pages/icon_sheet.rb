@@ -30,7 +30,7 @@ class Views::Pages::IconSheet < Views::Base
         end
 
         SheetFooter() do
-          Button(variant: :outline, data: { action: "click->rbui--sheet-content#close" }) { t("pages.icon_sheet.close") }
+          Button(variant: :outline, class: "w-full", data: { action: "click->ruby-ui--sheet-content#close" }) { t("pages.icon_sheet.close") }
         end
       end
     end
