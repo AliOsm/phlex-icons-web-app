@@ -6,6 +6,8 @@ FROM ghcr.io/rails/devcontainer/images/ruby:$RUBY_VERSION
 # The value is a comma-separated list of allowed domains.
 ENV RAILS_DEVELOPMENT_HOSTS=".githubpreview.dev,.preview.app.github.dev,.app.github.dev,.ngrok-free.app"
 
+USER root
+
 RUN apt-get update \
     # Install additional OS packages.
     && export DEBIAN_FRONTEND=noninteractive \
@@ -15,3 +17,5 @@ RUN apt-get update \
     # Clean up.
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+USER vscode

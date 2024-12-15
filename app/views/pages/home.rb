@@ -58,10 +58,9 @@ class Views::Pages::Home < Views::Base
 
   def icons_to_render
     ICON_PACKS.flat_map do |pack, info|
-      pack.constants
-          .reject { |const| CONSTANTS_TO_EXCLUDE_FROM_BACKGROUND.include?(const) }
-          .sample(info[:bg_count])
-          .map { |icon| pack.const_get(icon).new(class: "p-0.5 transition duration-100 hover:scale-[1.25]") }
+      filtered_pack_constants(pack).reject { |const| CONSTANTS_TO_EXCLUDE_FROM_BACKGROUND.include?(const) }
+                                   .sample(info[:bg_count])
+                                   .map { |icon| pack.const_get(icon).new(class: "p-0.5 transition duration-100 hover:scale-[1.25]") }
     end
   end
 
@@ -73,12 +72,17 @@ class Views::Pages::Home < Views::Base
         icon_pack_card(
           name: PhlexIcons.to_s,
           version: PhlexIcons::VERSION,
-          count: ICON_PACKS.sum { |pack, _| pack.constants.count },
+          count: ICON_PACKS.sum { |pack, _| filtered_pack_constants(pack).count },
           link: "https://github.com/AliOsm/phlex-icons"
         )
 
         ICON_PACKS.each do |pack, info|
-          icon_pack_card(name: pack.name.split("::").last, version: pack::VERSION, count: pack.constants.count, link: info[:link])
+          icon_pack_card(
+            name: pack.name.split("::").last,
+            version: pack::VERSION,
+            count: filtered_pack_constants(pack).count,
+            link: info[:link]
+          )
         end
       end
     end
@@ -163,11 +167,26 @@ class Views::Pages::Home < Views::Base
 
   def icon_pack_block_icons(pack)
     div(class: "grid grid-cols-8 sm:grid-cols-24 gap-4") do
-      (pack.constants - CONSTANTS_TO_EXCLUDE_FROM_SEARCH).sort.each do |icon|
-        a(href: icon_sheet_path(icon: icon, pack: pack.name), class: "searchable", data: { turbo_stream: true, index: icon.to_s.underscore.gsub("_", " ") }) do
+      (filtered_pack_constants(pack) - CONSTANTS_TO_EXCLUDE_FROM_SEARCH).sort.each do |icon|
+        a(
+          href: icon_sheet_path(icon: icon, pack: pack.name),
+          class: "searchable",
+          data: {
+            turbo_stream: true,
+            index: icon.to_s.underscore.gsub("_", " ")
+          }
+        ) do
           render pack.const_get(icon).new(class: "cursor-pointer")
         end
       end
+    end
+  end
+
+  def filtered_pack_constants(pack)
+    @filtered_pack_constants ||= {}
+
+    @filtered_pack_constants[pack] ||= pack.constants.reject do |const|
+      pack::VARIANTS.present? && const.end_with?(*pack::VARIANTS&.map(&:to_s)&.map(&:capitalize))
     end
   end
 end
