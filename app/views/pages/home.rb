@@ -146,7 +146,7 @@ class Views::Pages::Home < Views::Base
     Heading(level: 2, class: "pb-2 mb-4") do
       plain pack.name.split("::").last
 
-      Text(size: "2", class: "text-muted-foreground") { number_with_delimiter(pack.constants.count) }
+      Text(size: "2", class: "text-muted-foreground") { number_with_delimiter(filtered_pack_constants(pack).count) }
 
       div(class: "flex flex-row items-center space-x-2") do
         unless pack::VARIANTS.nil?
