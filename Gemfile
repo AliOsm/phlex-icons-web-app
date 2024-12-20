@@ -4,7 +4,7 @@ gem "method_source", "~> 1.1"
 gem "phlex-icons", github: "AliOsm/phlex-icons"
 gem "phlex-rails", github: "phlex-ruby/phlex-rails"
 gem "ruby_ui", github: "ruby-ui/ruby_ui"
-gem "tailwind_merge", "~> 0.13.3"
+gem "tailwind_merge", "~> 0.14.0"
 gem "rouge", "~> 4.5", ">= 4.5.1"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
