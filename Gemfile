@@ -1,14 +1,14 @@
 source "https://rubygems.org"
 
 gem "method_source", "~> 1.1"
-gem "phlex-icons", github: "AliOsm/phlex-icons"
-gem "phlex-rails", github: "phlex-ruby/phlex-rails"
-gem "ruby_ui", github: "ruby-ui/ruby_ui"
-gem "tailwind_merge", "~> 0.13.3"
+gem "phlex-icons", "~> 2.16"
+gem "phlex-rails", "~> 2.2"
+gem "ruby_ui", "~> 1.0"
+gem "tailwind_merge", "~> 1.2"
 gem "rouge", "~> 4.5", ">= 4.5.1"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 8.0", ">= 8.0.1"
+gem "rails", "~> 8.0", ">= 8.0.2"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use sqlite3 as the database for Active Record
@@ -39,6 +39,12 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
+
+# Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
+gem "kamal", require: false
+
+# Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
+gem "thruster", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

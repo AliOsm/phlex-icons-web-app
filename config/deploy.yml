@@ -12,40 +12,17 @@ servers:
   web:
     hosts:
       - 54.247.196.28
-    options:
-      network: "kamal_network"
-    labels:
-      traefik.http.routers.phlex-icons.entrypoints: websecure
-      traefik.http.routers.phlex-icons.rule: Host(`phlex-icons.fun`)
-      traefik.http.routers.phlex-icons.tls: true
-      traefik.http.routers.phlex-icons.tls.certresolver: letsencrypt
 
-traefik:
-  options:
-    network: "kamal_network"
-    publish:
-      - "443:443"
-    volume:
-      - "/letsencrypt/acme.json:/letsencrypt/acme.json"
-  args:
-    entryPoints.web.address: ":80"
-    entryPoints.websecure.address: ":443"
-    entryPoints.web.http.redirections.entryPoint.to: websecure
-    entryPoints.web.http.redirections.entryPoint.scheme: https
-    entryPoints.web.http.redirections.entrypoint.permanent: true
-    certificatesResolvers.letsencrypt.acme.email: "aliosm1997@gmail.com"
-    certificatesResolvers.letsencrypt.acme.storage: "/letsencrypt/acme.json"
-    certificatesResolvers.letsencrypt.acme.httpchallenge: true
-    certificatesResolvers.letsencrypt.acme.httpchallenge.entrypoint: web
+proxy:
+  host: phlex-icons.fun
+  ssl: true
+  healthcheck:
+    path: /up
 
 # Remember to run `kamal env push` after making changes!
 env:
   secret:
     - RAILS_MASTER_KEY
-
-healthcheck:
-  log_lines: 10_000
-  max_attempts: 25
 
 asset_path: /rails/public/assets
 
@@ -53,6 +30,5 @@ ssh:
   user: ubuntu
 
 builder:
-  remote:
-    arch: amd64
-    host: ssh://ubuntu@54.247.196.28
+  arch: amd64
+  remote: ssh://ubuntu@54.247.196.28

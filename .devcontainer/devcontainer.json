@@ -9,6 +9,7 @@
   "features": {
     "ghcr.io/devcontainers/features/node": {},
     "ghcr.io/devcontainers/features/docker-in-docker": {},
+    "ghcr.io/roul/devcontainer-features/bitwarden-secrets-manager": {},
     "ghcr.io/jungaretti/features/vim": {},
     "ghcr.io/devcontainers/features/common-utils:latest": {
       "installOhMyZsh": false,
