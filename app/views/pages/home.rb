@@ -6,6 +6,7 @@ class Views::Pages::Home < Views::Base
     Flag => { bg_count: 50, link: "https://flagicons.lipis.dev" },
     Hero => { bg_count: 250, link: "https://heroicons.com" },
     Lucide => { bg_count: 500, link: "https://lucide.dev/icons" },
+    Material => { bg_count: 500, link: "https://fonts.google.com/icons?icon.style=Filled&icon.set=Material+Icons" },
     Radix => { bg_count: 250, link: "https://icons.radix-ui.com" },
     Remix => { bg_count: 1000, link: "https://remixicon.com" },
     Tabler => { bg_count: 1000, link: "https://tabler-icons.io" }
@@ -72,7 +73,7 @@ class Views::Pages::Home < Views::Base
         icon_pack_card(
           name: PhlexIcons.to_s,
           version: PhlexIcons::VERSION,
-          count: ICON_PACKS.sum { |pack, _| filtered_pack_constants(pack).count },
+          count: ICON_PACKS.sum { |pack, _| icon_pack_size(pack) },
           link: "https://github.com/AliOsm/phlex-icons"
         )
 
@@ -80,7 +81,7 @@ class Views::Pages::Home < Views::Base
           icon_pack_card(
             name: pack.name.split("::").last,
             version: pack::VERSION,
-            count: filtered_pack_constants(pack).count,
+            count: icon_pack_size(pack),
             link: info[:link]
           )
         end
@@ -146,7 +147,7 @@ class Views::Pages::Home < Views::Base
     Heading(level: 2, class: "pb-2 mb-4") do
       plain pack.name.split("::").last
 
-      Text(size: "2", class: "text-muted-foreground") { number_with_delimiter(filtered_pack_constants(pack).count) }
+      Text(size: "2", class: "text-muted-foreground") { number_with_delimiter(icon_pack_size(pack)) }
 
       div(class: "flex flex-row items-center space-x-2") do
         unless pack::VARIANTS.nil?
@@ -186,7 +187,11 @@ class Views::Pages::Home < Views::Base
     @filtered_pack_constants ||= {}
 
     @filtered_pack_constants[pack] ||= pack.constants.reject do |const|
-      pack::VARIANTS.present? && const.end_with?(*pack::VARIANTS&.map(&:to_s)&.map(&:capitalize))
+      pack::VARIANTS.present? && const.end_with?(*pack::VARIANTS&.map(&:to_s)&.map(&:camelize))
     end
+  end
+
+  def icon_pack_size(pack)
+    filtered_pack_constants(pack).count - 4
   end
 end
