@@ -67,7 +67,7 @@ class Views::Pages::Home < Views::Base
 
   def available_icon_packs
     div(class: "container max-w-6xl py-24 lg:py-32") do
-      Heading(level: 2) { t("pages.home.available_icon_packs") }
+      Heading(level: 2, class: 'mb-2') { t("pages.home.available_icon_packs") }
 
       div(class: "grid grid-cols-2 sm:grid-cols-4 gap-4") do
         icon_pack_card(
