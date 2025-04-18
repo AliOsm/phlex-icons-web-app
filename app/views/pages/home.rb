@@ -2,14 +2,14 @@
 
 class Views::Pages::Home < Views::Base
   ICON_PACKS = {
-    Bootstrap => { bg_count: 500, link: "https://icons.getbootstrap.com" },
-    Flag => { bg_count: 50, link: "https://flagicons.lipis.dev" },
-    Hero => { bg_count: 250, link: "https://heroicons.com" },
-    Lucide => { bg_count: 500, link: "https://lucide.dev/icons" },
-    Material => { bg_count: 500, link: "https://fonts.google.com/icons?icon.style=Filled&icon.set=Material+Icons" },
-    Radix => { bg_count: 250, link: "https://icons.radix-ui.com" },
-    Remix => { bg_count: 1000, link: "https://remixicon.com" },
-    Tabler => { bg_count: 1000, link: "https://tabler-icons.io" }
+    Bootstrap => { bg_count: 500, website_link: "https://icons.getbootstrap.com", gem_link: "https://rubygems.org/gems/phlex-icons-bootstrap" },
+    Flag => { bg_count: 50, website_link: "https://flagicons.lipis.dev", gem_link: "https://rubygems.org/gems/phlex-icons-flag" },
+    Hero => { bg_count: 250, website_link: "https://heroicons.com", gem_link: "https://rubygems.org/gems/phlex-icons-hero" },
+    Lucide => { bg_count: 500, website_link: "https://lucide.dev/icons", gem_link: "https://rubygems.org/gems/phlex-icons-lucide" },
+    Material => { bg_count: 500, website_link: "https://fonts.google.com/icons?icon.style=Filled&icon.set=Material+Icons", gem_link: "https://rubygems.org/gems/phlex-icons-material" },
+    Radix => { bg_count: 250, website_link: "https://icons.radix-ui.com", gem_link: "https://rubygems.org/gems/phlex-icons-radix" },
+    Remix => { bg_count: 1000, website_link: "https://remixicon.com", gem_link: "https://rubygems.org/gems/phlex-icons-remix" },
+    Tabler => { bg_count: 1000, website_link: "https://tabler-icons.io", gem_link: "https://rubygems.org/gems/phlex-icons-tabler" }
   }
 
   CONSTANTS_TO_EXCLUDE_FROM_BACKGROUND = [ :Configuration, :Base, :VERSION, :VARIANTS, :Il, :CrossFill, :CrossLine, :Cross, :CrossOff ]
@@ -74,7 +74,8 @@ class Views::Pages::Home < Views::Base
           name: PhlexIcons.to_s,
           version: PhlexIcons::VERSION,
           count: ICON_PACKS.sum { |pack, _| icon_pack_size(pack) },
-          link: "https://github.com/AliOsm/phlex-icons"
+          website_link: "https://github.com/AliOsm/phlex-icons",
+          gem_link: "https://rubygems.org/gems/phlex-icons"
         )
 
         ICON_PACKS.each do |pack, info|
@@ -82,14 +83,15 @@ class Views::Pages::Home < Views::Base
             name: pack.name.split("::").last,
             version: pack::VERSION,
             count: icon_pack_size(pack),
-            link: info[:link]
+            website_link: info[:website_link],
+            gem_link: info[:gem_link]
           )
         end
       end
     end
   end
 
-  def icon_pack_card(name:, version:, count:, link:)
+  def icon_pack_card(name:, version:, count:, website_link:, gem_link:)
     Card(class: "rounded-lg") do
       CardHeader(class: "flex flex-row items-top justify-between space-y-0 pb-2") do
         CardTitle(class: "text-md font-medium") do
@@ -98,8 +100,14 @@ class Views::Pages::Home < Views::Base
           Text(size: "2", class: "text-muted-foreground") { "v#{version}" }
         end
 
-        Link(href: link, variant: :outline, icon: true, class: "size-7", target: :_blank) do
-          Lucide::ExternalLink(class: "size-4")
+        div(class: "flex flex-col gap-2") do
+          Link(href: website_link, variant: :outline, icon: true, class: "size-7", target: :_blank) do
+            Lucide::ExternalLink(class: "size-4")
+          end
+
+          Link(href: gem_link, variant: :outline, icon: true, class: "size-7", target: :_blank) do
+            Bootstrap::Gem(class: "size-4")
+          end
         end
       end
 
