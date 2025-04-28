@@ -101,7 +101,7 @@ class Views::Pages::IconSheet < Views::Base
           plain_svg_block(variant:)
         end
       rescue NotImplementedError
-        TypographyMuted() { "Variant not implemented" }
+        Text(size: "sm", weight: "muted") { "Variant not implemented" }
       end
     end
   end
