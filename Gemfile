@@ -1,11 +1,11 @@
 source "https://rubygems.org"
 
 gem "method_source", "~> 1.1"
-gem "phlex-icons", "~> 2.18"
+gem "phlex-icons", "~> 2.19"
 gem "phlex-rails", "~> 2.2"
-gem "ruby_ui", "~> 1.0"
+gem 'ruby_ui', '~> 1.0', '>= 1.0.1'
 gem "tailwind_merge", "~> 1.2"
-gem "rouge", "~> 4.5", ">= 4.5.1"
+gem 'rouge', '~> 4.5', '>= 4.5.2'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0", ">= 8.0.2"
