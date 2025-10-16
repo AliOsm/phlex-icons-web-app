@@ -5,6 +5,7 @@ class Views::Pages::Home < Views::Base
     Bootstrap => { bg_count: 500, website_link: "https://icons.getbootstrap.com", gem_link: "https://rubygems.org/gems/phlex-icons-bootstrap" },
     Flag => { bg_count: 50, website_link: "https://flagicons.lipis.dev", gem_link: "https://rubygems.org/gems/phlex-icons-flag" },
     Hero => { bg_count: 250, website_link: "https://heroicons.com", gem_link: "https://rubygems.org/gems/phlex-icons-hero" },
+    Huge => { bg_count: 1000, website_link: "https://hugeicons.com", gem_link: "https://rubygems.org/gems/phlex-icons-huge" },
     Lucide => { bg_count: 500, website_link: "https://lucide.dev/icons", gem_link: "https://rubygems.org/gems/phlex-icons-lucide" },
     Material => { bg_count: 500, website_link: "https://fonts.google.com/icons?icon.style=Filled&icon.set=Material+Icons", gem_link: "https://rubygems.org/gems/phlex-icons-material" },
     Radix => { bg_count: 250, website_link: "https://icons.radix-ui.com", gem_link: "https://rubygems.org/gems/phlex-icons-radix" },
@@ -67,7 +68,7 @@ class Views::Pages::Home < Views::Base
 
   def available_icon_packs
     div(class: "container max-w-6xl py-24 lg:py-32") do
-      Heading(level: 2, class: 'mb-2') { t("pages.home.available_icon_packs") }
+      Heading(level: 2, class: "mb-2") { t("pages.home.available_icon_packs") }
 
       div(class: "grid grid-cols-2 sm:grid-cols-4 gap-4") do
         icon_pack_card(

@@ -1,14 +1,14 @@
 source "https://rubygems.org"
 
 gem "method_source", "~> 1.1"
-gem "phlex-icons", "~> 2.19"
-gem "phlex-rails", "~> 2.2"
-gem 'ruby_ui', '~> 1.0', '>= 1.0.1'
-gem "tailwind_merge", "~> 1.2"
-gem 'rouge', '~> 4.5', '>= 4.5.2'
+gem "phlex-icons", "~> 2.41"
+gem "phlex-rails", "~> 2.3", ">= 2.3.1"
+gem "ruby_ui", "~> 1.0", ">= 1.0.2"
+gem "tailwind_merge", "~> 1.3", ">= 1.3.1"
+gem "rouge", "~> 4.6", ">= 4.6.1"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 8.0", ">= 8.0.2"
+gem "rails", "~> 8.0", ">= 8.0.3"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use sqlite3 as the database for Active Record
