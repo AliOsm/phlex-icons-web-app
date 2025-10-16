@@ -2,3 +2,4 @@
 ruby = "3.4.7"
 node = "20.15.0"
 yarn = "1.22.22"
+bitwarden-secrets-manager = "latest"
