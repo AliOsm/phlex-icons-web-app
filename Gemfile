@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 gem "method_source", "~> 1.1"
-gem "phlex-icons", "~> 2.41"
+gem "phlex-icons", "~> 2.42"
 gem "phlex-rails", "~> 2.3", ">= 2.3.1"
 gem "ruby_ui", "~> 1.0", ">= 1.0.2"
 gem "tailwind_merge", "~> 1.3", ">= 1.3.1"
