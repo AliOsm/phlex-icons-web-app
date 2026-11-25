@@ -65,6 +65,9 @@ RUN rm -rf node_modules
 # Final stage for app image
 FROM base
 
+# Links the image on ghcr.io to this repository.
+LABEL org.opencontainers.image.source="https://github.com/AliOsm/phlex-icons-web-app"
+
 # Copy built artifacts: gems, application
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --from=build /rails /rails
