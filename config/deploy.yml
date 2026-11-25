@@ -23,11 +23,8 @@ ssh:
   user: ubuntu
   proxy_command: gcloud compute start-iap-tunnel %h %p --listen-on-stdin --zone europe-west1-b --project earnest-reactor-514916-n4
 
-# phlex-icons-gcp.ieasybooks.com is a test hostname for the move to GCP.
 proxy:
-  hosts:
-    - phlex-icons.fun
-    - phlex-icons-gcp.ieasybooks.com
+  host: phlex-icons.fun
   ssl: true
   healthcheck:
     path: /up
