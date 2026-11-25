@@ -1,0 +1,62 @@
+name: Deploy
+run-name: "Deploy · ${{ inputs.setup && 'kamal setup' || 'kamal deploy' }} · ${{ github.ref_name }}"
+
+on:
+  workflow_dispatch:
+    inputs:
+      setup:
+        description: Run `kamal setup` instead of `kamal deploy`, to install Docker and kamal-proxy on a new server
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    # ARM, like the VM, so the image builds natively.
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      packages: write # push the image to ghcr.io
+      id-token: write # sign in to GCP
+    env:
+      KAMAL_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+
+      # The apps on the VM share one kamal-proxy, so they all deploy with the
+      # same Kamal version.
+      - name: Install Kamal
+        run: gem install kamal --version 2.12.0 --no-document
+
+      # kamal-deploy may only open IAP tunnels to the VM's SSH port.
+      - name: Sign in to GCP
+        uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: projects/27608930161/locations/global/workloadIdentityPools/github/providers/github
+          service_account: kamal-deploy@earnest-reactor-514916-n4.iam.gserviceaccount.com
+
+      - name: Set up gcloud
+        uses: google-github-actions/setup-gcloud@v3
+
+      - name: Load ubuntu's SSH key
+        uses: webfactory/ssh-agent@v0.10.0
+        with:
+          ssh-private-key: ${{ secrets.GCP_VM_1_SSH_KEY }}
+
+      - name: Deploy
+        run: kamal ${{ inputs.setup && 'setup' || 'deploy' }}

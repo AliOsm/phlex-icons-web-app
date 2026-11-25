@@ -1,17 +1,27 @@
 service: phlex-icons
 
+# Published to GitHub's registry by the Deploy workflow, which signs in with
+# the job's GITHUB_TOKEN.
 image: aliosm/phlex-icons
 
 registry:
-  username: aliosm
+  server: ghcr.io
+  username: AliOsm
 
   password:
     - KAMAL_REGISTRY_PASSWORD
 
+# ieasy-books-vm, a GCP VM shared with baheth and makhzan. Kamal reaches its
+# SSH port through an IAP tunnel, so deploys need a gcloud login that may open
+# one (the Deploy workflow signs in as kamal-deploy) and ubuntu's key.
 servers:
   web:
     hosts:
-      - 54.247.196.28
+      - ieasy-books-vm
+
+ssh:
+  user: ubuntu
+  proxy_command: gcloud compute start-iap-tunnel %h %p --listen-on-stdin --zone europe-west1-b --project earnest-reactor-514916-n4
 
 proxy:
   host: phlex-icons.fun
@@ -19,16 +29,13 @@ proxy:
   healthcheck:
     path: /up
 
-# Remember to run `kamal env push` after making changes!
 env:
   secret:
     - RAILS_MASTER_KEY
 
 asset_path: /rails/public/assets
 
-ssh:
-  user: ubuntu
-
+# The VM is ARM, and so is the Deploy workflow's runner, so the image is built
+# there.
 builder:
-  arch: amd64
-  remote: ssh://ubuntu@54.247.196.28
+  arch: arm64
